@@ -12,11 +12,11 @@ String readRepositories = """
   }
 """;
 
-String yelpTest = """
-  query SearchRestaurants(\$location: String!) {
+String searchRestaurants = """
+  query SearchRestaurants() {
     search(term: "restaurants",
-            location: "\$location",
-            limit: 1) {
+            location: "san francisco",
+            limit: 5) {
       total
       business {
         name
@@ -43,6 +43,17 @@ String yelpTest = """
           text
         }
         phone
+      }
+    }
+  }
+""";
+
+String yelpTest = """
+  query SearchRestaurants() {
+    search(term: "restaurants",
+            location: "san francisco",
+            limit: 5) {
+      total
       }
     }
   }

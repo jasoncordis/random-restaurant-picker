@@ -4,8 +4,11 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 // import 'package:flutter_google_places/flutter_google_places.dart';
 import 'package:random_restaurant_picker/pages/restaurant_details.dart';
 // import 'package:random_restaurant_picker/secrets/api_keys.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart' as DotEnv;
 
 void main() async {
+  // Load API keys from env file if available.
+  await DotEnv.load(fileName: ".env");
   // We're using HiveStore for persistence,
   // so we need to initialize Hive.
   await initHiveForFlutter();
@@ -15,7 +18,10 @@ void main() async {
   );
 
   final AuthLink authLink = AuthLink(
-    getToken: () async => 'Bearer ' + String.fromEnvironment('YELP_API_KEY'),
+    getToken: () async =>
+        'Bearer ' +
+        String.fromEnvironment('YELP_API_KEY',
+            defaultValue: DotEnv.env['YELP_API_KEY']),
     // OR
     // getToken: () => 'Bearer <YOUR_PERSONAL_ACCESS_TOKEN>',
   );
@@ -107,7 +113,7 @@ class SecondRoute extends StatelessWidget {
       // then get the Prediction selected
       // Prediction prediction = await PlacesAutocomplete.show(
       //     context: context,
-      //     apiKey: GOOGLE_API_KEY,
+      //     apiKey: String.fromEnvironment('GOOGLE_API_KEY', defaultValue: DotEnv.env['GOOGLE_API_KEY']),
       //     mode: Mode.fullscreen, // Mode.overlay
       //     language: "en",
       //     components: [Component(Component.country, "us")]);

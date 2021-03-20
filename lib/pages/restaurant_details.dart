@@ -45,6 +45,7 @@ class _RestaurantDetailsPageState extends State<RestaurantDetailsPage> {
           document: gql(yelpTest), // this is the query string you just created
           variables: {
             'location': 'san francisco',
+            'nRepositories': 50,
           },
           pollInterval: Duration(seconds: 10),
         ),
@@ -61,7 +62,8 @@ class _RestaurantDetailsPageState extends State<RestaurantDetailsPage> {
           }
 
           // it can be either Map or List
-          List repositories = result.data['viewer']['repositories']['nodes'];
+          print(result);
+          List repositories = result.data['search']['business'];
 
           return ListView.builder(
               itemCount: repositories.length,

@@ -26,6 +26,7 @@ dependencies:
   graphql_flutter: ^4.0.1
   flutter_google_places: ^0.2.4
   google_maps_webservice: ^0.0.16
+  flutter_dotenv: ^3.1.0
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -47,6 +48,7 @@ flutter:
   uses-material-design: true
   assets:
     - images/background.jpg
+    - .env
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
