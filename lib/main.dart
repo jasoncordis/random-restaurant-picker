@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:google_maps_webservice/places.dart';
+import 'package:flutter_google_places/flutter_google_places.dart';
 //import 'package:random_restaurant_picker/pages/restaurant_details.dart';
+
+const API_KEY = "AIzaSyDaLoVRBiGxUUWg0uliTV_uELvFaDXVueQ";
 
 void main() async {
   // We're using HiveStore for persistence,
@@ -99,15 +103,25 @@ class _MyHomePageState extends State<MyHomePage> {
 class SecondRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
+  Future<void> _handlePressButton() async {
+    // show input autocomplete with selected mode
+    // then get the Prediction selected
+      Prediction prediction = await PlacesAutocomplete.show(
+            context: context,
+            apiKey: API_KEY,
+            mode: Mode.fullscreen, // Mode.overlay
+            language: "en",
+            components: [Component(Component.country, "us")]);
+  }
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Choose Your Location"),
       ),
       body: Center(
         child: ElevatedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
+          onPressed:_handlePressButton,
           child: Text('Go back!'),
         ),
       ),
