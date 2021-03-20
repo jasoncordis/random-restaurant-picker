@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import 'package:google_maps_webservice/places.dart';
-import 'package:flutter_google_places/flutter_google_places.dart';
+// import 'package:google_maps_webservice/places.dart';
+// import 'package:flutter_google_places/flutter_google_places.dart';
 import 'package:random_restaurant_picker/pages/restaurant_details.dart';
-//import 'package:random_restaurant_picker/secrets/api_keys.dart';
-
-const GITHUB_API_KEY = "AIzaSyDaLoVRBiGxUUWg0uliTV_uELvFaDXVueQ";
+import 'package:random_restaurant_picker/secrets/api_keys.dart';
 
 void main() async {
   // We're using HiveStore for persistence,
@@ -20,7 +18,7 @@ void main() async {
   final AuthLink authLink = AuthLink(
     getToken: () async =>
         'Bearer ' +
-        String.fromEnvironment('GITHUB_API_KEY', defaultValue: GITHUB_API_KEY),
+        String.fromEnvironment('YELP_API_KEY', defaultValue: YELP_API_KEY),
     // OR
     // getToken: () => 'Bearer <YOUR_PERSONAL_ACCESS_TOKEN>',
   );
@@ -85,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
             children: <Widget>[
               Text(
                 'Welcome to Random Restaurant Picker',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize:30),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
               ),
               ElevatedButton(
                 child: Text('Continue'),
@@ -99,7 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
         ),
-      ), 
+      ),
     );
   }
 }
@@ -107,17 +105,17 @@ class _MyHomePageState extends State<MyHomePage> {
 class SecondRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
-  Future<void> _handlePressButton() async {
-    // show input autocomplete with selected mode
-    // then get the Prediction selected
-      Prediction prediction = await PlacesAutocomplete.show(
-            context: context,
-            apiKey: GITHUB_API_KEY,
-            mode: Mode.fullscreen, // Mode.overlay
-            language: "en",
-            components: [Component(Component.country, "us")]);
-  }
+    Future<void> _handlePressButton() async {
+      // show input autocomplete with selected mode
+      // then get the Prediction selected
+      // Prediction prediction = await PlacesAutocomplete.show(
+      //     context: context,
+      //     apiKey: GOOGLE_API_KEY,
+      //     mode: Mode.fullscreen, // Mode.overlay
+      //     language: "en",
+      //     components: [Component(Component.country, "us")]);
+      print('something');
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -125,7 +123,7 @@ class SecondRoute extends StatelessWidget {
       ),
       body: Center(
         child: ElevatedButton(
-          onPressed:_handlePressButton,
+          onPressed: _handlePressButton,
           child: Text('Go back!'),
         ),
       ),
