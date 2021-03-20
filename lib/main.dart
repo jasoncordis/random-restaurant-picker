@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:random_restaurant_picker/pages/restaurant_details.dart';
 
 void main() async {
   // We're using HiveStore for persistence,
@@ -30,7 +31,7 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  ValueNotifier<GraphQLClient> client;
+  final ValueNotifier<GraphQLClient> client;
 
   MyApp({this.client});
 
