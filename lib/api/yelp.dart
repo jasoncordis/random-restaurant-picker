@@ -54,7 +54,6 @@ String yelpTest = """
             location: "san francisco",
             limit: 5) {
       total
-      }
     }
   }
 """;
