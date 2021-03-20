@@ -124,26 +124,32 @@ class SecondRoute extends StatelessWidget {
       appBar: AppBar(
         title: Text("Choose Your Location"),
       ),
-      body: Center(
-        child: TextFormField(
-          decoration: new InputDecoration(
-                        labelText: "Enter Location",
-                        fillColor: Colors.white,
-                        border: new OutlineInputBorder(
-                          borderRadius: new BorderRadius.circular(25.0),
-                          borderSide: new BorderSide(
-                          ),
-                        ),
-                        //fillColor: Colors.green
-                      ),
-          validator: (value) {
-            if (value.isEmpty) {
-              return 'Please enter some text';
-            }
-            return null;
-          },
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage("images/background.jpg"), fit: BoxFit.cover),
         ),
-      ),
-    );
+          child: Center(
+            child: TextFormField(
+              decoration: new InputDecoration(
+                            labelText: "Enter Location",
+                            fillColor: Colors.white,
+                            border: new OutlineInputBorder(
+                              borderRadius: new BorderRadius.circular(25.0),
+                              borderSide: new BorderSide(
+                              ),
+                            ),
+                            //fillColor: Colors.green
+                          ),
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Please enter some text';
+                }
+                return null;
+              },
+            ),
+          ),
+        ),
+      );
   }
 }
