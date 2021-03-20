@@ -63,10 +63,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-<<<<<<< HEAD
-=======
-
->>>>>>> d7b0985e06ba934c9c6f2849b62c51f5c4f50a20
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,7 +81,6 @@ class _MyHomePageState extends State<MyHomePage> {
               Text(
                 'Welcome to Random Restaurant Picker',
               ),
-<<<<<<< HEAD
               ElevatedButton(
                 child: Text('Continue'),
                 onPressed: () {
@@ -95,17 +90,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   );
                 },
               ),
-=======
-          ElevatedButton(
-          child: Text('Continue'),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => SecondRoute()),
-            );
-          },
-        ),
->>>>>>> d7b0985e06ba934c9c6f2849b62c51f5c4f50a20
             ],
           ),
         ),
@@ -131,8 +115,4 @@ class SecondRoute extends StatelessWidget {
       ),
     );
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> d7b0985e06ba934c9c6f2849b62c51f5c4f50a20
