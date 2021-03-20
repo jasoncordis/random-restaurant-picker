@@ -8,7 +8,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart' as DotEnv;
 
 void main() async {
   // Load API keys from env file if available.
-  await DotEnv.load(fileName: ".env");
+  await DotEnv.load(fileName: "apikey.env");
   // We're using HiveStore for persistence,
   // so we need to initialize Hive.
   await initHiveForFlutter();
@@ -125,9 +125,23 @@ class SecondRoute extends StatelessWidget {
         title: Text("Choose Your Location"),
       ),
       body: Center(
-        child: ElevatedButton(
-          onPressed: _handlePressButton,
-          child: Text('Go back!'),
+        child: TextFormField(
+          decoration: new InputDecoration(
+                        labelText: "Enter Location",
+                        fillColor: Colors.white,
+                        border: new OutlineInputBorder(
+                          borderRadius: new BorderRadius.circular(25.0),
+                          borderSide: new BorderSide(
+                          ),
+                        ),
+                        //fillColor: Colors.green
+                      ),
+          validator: (value) {
+            if (value.isEmpty) {
+              return 'Please enter some text';
+            }
+            return null;
+          },
         ),
       ),
     );
