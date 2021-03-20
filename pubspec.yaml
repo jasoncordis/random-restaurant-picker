@@ -22,7 +22,7 @@ environment:
 
 dependencies:
   flutter:
-  sdk: flutter
+    sdk: flutter
   graphql_flutter: ^4.0.1
   flutter_google_places: ^0.2.4
   google_maps_webservice: ^0.0.16
@@ -41,11 +41,12 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  assets:
+    - assets/background.jpg
 
   # To add assets to your application, add an assets section, like this:
   # assets:
