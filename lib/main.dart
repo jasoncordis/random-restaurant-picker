@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:google_maps_webservice/places.dart';
 import 'package:flutter_google_places/flutter_google_places.dart';
-//import 'package:random_restaurant_picker/pages/restaurant_details.dart';
+import 'package:random_restaurant_picker/pages/restaurant_details.dart';
+//import 'package:random_restaurant_picker/secrets/api_keys.dart';
 
-const API_KEY = "AIzaSyDaLoVRBiGxUUWg0uliTV_uELvFaDXVueQ";
+const GITHUB_API_KEY = "AIzaSyDaLoVRBiGxUUWg0uliTV_uELvFaDXVueQ";
 
 void main() async {
   // We're using HiveStore for persistence,
@@ -15,8 +16,11 @@ void main() async {
     'https://api.github.com/graphql',
   );
 
+//*
   final AuthLink authLink = AuthLink(
-    getToken: () async => 'Bearer <YOUR_PERSONAL_ACCESS_TOKEN>',
+    getToken: () async =>
+        'Bearer ' +
+        String.fromEnvironment('GITHUB_API_KEY', defaultValue: GITHUB_API_KEY),
     // OR
     // getToken: () => 'Bearer <YOUR_PERSONAL_ACCESS_TOKEN>',
   );
@@ -48,7 +52,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: MyHomePage(title: 'Random Restaurant Picker'),
+        home: RestaurantDetailsPage(title: 'Random Restaurant Picker'),
       ),
     );
   }
@@ -64,7 +68,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -83,15 +86,15 @@ class _MyHomePageState extends State<MyHomePage> {
               Text(
                 'Welcome to Random Restaurant Picker',
               ),
-          ElevatedButton(
-          child: Text('Continue'),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => SecondRoute()),
-            );
-          },
-        ),
+              ElevatedButton(
+                child: Text('Continue'),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SecondRoute()),
+                  );
+                },
+              ),
             ],
           ),
         ),
@@ -109,7 +112,7 @@ class SecondRoute extends StatelessWidget {
     // then get the Prediction selected
       Prediction prediction = await PlacesAutocomplete.show(
             context: context,
-            apiKey: API_KEY,
+            apiKey: GITHUB_API_KEY,
             mode: Mode.fullscreen, // Mode.overlay
             language: "en",
             components: [Component(Component.country, "us")]);
