@@ -56,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Container(decoration: BoxDecoration(
-              image: DecorationImage(image: AssetImage("https://i.imgur.com/KU8g00X.jpg"), fit: BoxFit.cover),),
+              image: DecorationImage(image: AssetImage("assets/background.jpg"), fit: BoxFit.cover),),
       child: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
