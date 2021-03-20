@@ -42,10 +42,9 @@ class _RestaurantDetailsPageState extends State<RestaurantDetailsPage> {
       body: Container(
           child: Query(
         options: QueryOptions(
-          document: gql(
-              readRepositories), // this is the query string you just created
+          document: gql(yelpTest), // this is the query string you just created
           variables: {
-            'nRepositories': 50,
+            'location': 'san francisco',
           },
           pollInterval: Duration(seconds: 10),
         ),

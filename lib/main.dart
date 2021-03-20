@@ -9,7 +9,7 @@ void main() async {
   await initHiveForFlutter();
 
   final HttpLink httpLink = HttpLink(
-    'https://api.github.com/graphql',
+    'https://api.yelp.com/v3/graphql',
   );
 
   final AuthLink authLink = AuthLink(
@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: RestaurantDetailsPage(title: 'Random Restaurant Picker'),
+        home: MyHomePage(title: 'Random Restaurant Picker'),
       ),
     );
   }
