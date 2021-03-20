@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
     return GraphQLProvider(
       client: client,
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Random Restaurant Picker',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
