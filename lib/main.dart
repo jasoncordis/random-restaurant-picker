@@ -14,11 +14,8 @@ void main() async {
     'https://api.yelp.com/v3/graphql',
   );
 
-//*
   final AuthLink authLink = AuthLink(
-    getToken: () async =>
-        'Bearer ' +
-        String.fromEnvironment('YELP_API_KEY', defaultValue: YELP_API_KEY),
+    getToken: () async => 'Bearer ' + String.fromEnvironment('YELP_API_KEY'),
     // OR
     // getToken: () => 'Bearer <YOUR_PERSONAL_ACCESS_TOKEN>',
   );
