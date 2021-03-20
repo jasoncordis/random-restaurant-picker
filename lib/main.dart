@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:google_maps_webservice/places.dart';
+import 'package:flutter_google_places/flutter_google_places.dart';
 import 'package:random_restaurant_picker/pages/restaurant_details.dart';
-import 'package:random_restaurant_picker/secrets/api_keys.dart';
+//import 'package:random_restaurant_picker/secrets/api_keys.dart';
+
+const GITHUB_API_KEY = "AIzaSyDaLoVRBiGxUUWg0uliTV_uELvFaDXVueQ";
 
 void main() async {
   // We're using HiveStore for persistence,
@@ -12,6 +16,7 @@ void main() async {
     'https://api.yelp.com/v3/graphql',
   );
 
+//*
   final AuthLink authLink = AuthLink(
     getToken: () async =>
         'Bearer ' +
@@ -65,14 +70,14 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return new Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-              image: AssetImage("assets/background.jpg"), fit: BoxFit.cover),
+              image: AssetImage("images/background.jpg"), fit: BoxFit.cover),
         ),
         child: Center(
           child: Column(
@@ -80,6 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
             children: <Widget>[
               Text(
                 'Welcome to Random Restaurant Picker',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize:30),
               ),
               ElevatedButton(
                 child: Text('Continue'),
@@ -93,7 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
         ),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ), 
     );
   }
 }
@@ -101,15 +107,25 @@ class _MyHomePageState extends State<MyHomePage> {
 class SecondRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
+  Future<void> _handlePressButton() async {
+    // show input autocomplete with selected mode
+    // then get the Prediction selected
+      Prediction prediction = await PlacesAutocomplete.show(
+            context: context,
+            apiKey: GITHUB_API_KEY,
+            mode: Mode.fullscreen, // Mode.overlay
+            language: "en",
+            components: [Component(Component.country, "us")]);
+  }
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Choose Your Location"),
       ),
       body: Center(
         child: ElevatedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
+          onPressed:_handlePressButton,
           child: Text('Go back!'),
         ),
       ),
