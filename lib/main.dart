@@ -133,7 +133,6 @@ class SecondRoute extends StatelessWidget {
                         _handlePressButton();
                       },
           child: Text('Enter location'),
-
           ),
         ),
       ),
