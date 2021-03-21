@@ -51,8 +51,9 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: MyHomePage(
+        home: RestaurantDetailsPage(
           title: 'Random Restaurant Picker',
+          location: 'San Francisco, CA, USA',
         ),
       ),
     );
@@ -151,9 +152,9 @@ class SecondRoute extends StatelessWidget {
         ),
         child: Center(
           child: ElevatedButton(
-            onPressed: () async {
-              String address = await _handlePressButton();
-              // String address = 'San Francisco, CA, USA';
+            onPressed: () {
+              // String address = await _handlePressButton();
+              String address = 'San Francisco, CA, USA';
               Navigator.push(
                 context,
                 MaterialPageRoute(
