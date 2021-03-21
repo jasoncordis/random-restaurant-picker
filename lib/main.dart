@@ -130,7 +130,6 @@ class SecondRoute extends StatelessWidget {
         );
         var searchResults =
             convert.jsonDecode(response.body)['data']['search']['business'][0];
-        print(searchResults);
         Navigator.push(
           context,
           MaterialPageRoute(
