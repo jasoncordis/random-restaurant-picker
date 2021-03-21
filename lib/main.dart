@@ -8,7 +8,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart' as DotEnv;
 
 void main() async {
   // Load API keys from env file if available.
-  //await DotEnv.load(fileName: "apikey.env");
+  await DotEnv.load(fileName: ".env");
   // We're using HiveStore for persistence,
   // so we need to initialize Hive.
   await initHiveForFlutter();
@@ -20,11 +20,8 @@ void main() async {
   final AuthLink authLink = AuthLink(
     getToken: () async =>
         'Bearer ' +
-        String.fromEnvironment(
-            'RU8br-ZfI6fTPcol68ahMsStdnsyl2CDcHneoscds5N9wS1bq0CVX0hff0IrgL9cZaIGpwjCK5wNSTqo5pLVj1DdUm5_jCkPx3NqXysqCQjEC2J6kvr8pjWOGfBUYHYx',
+        String.fromEnvironment('YELP_API_KEY',
             defaultValue: DotEnv.env['YELP_API_KEY']),
-    // OR
-    // getToken: () => 'Bearer <YOUR_PERSONAL_ACCESS_TOKEN>',
   );
 
   final Link link = authLink.concat(httpLink);
@@ -54,7 +51,9 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: MyHomePage(title: 'Random Restaurant Picker'),
+        home: MyHomePage(
+          title: 'Random Restaurant Picker',
+        ),
       ),
     );
   }
@@ -92,6 +91,10 @@ class _MyHomePageState extends State<MyHomePage> {
               ElevatedButton(
                 child: Text('Continue'),
                 onPressed: () {
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => SecondRoute()),
+                  // );
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => SecondRoute()),
@@ -117,7 +120,7 @@ class SecondRoute extends StatelessWidget {
         );
         PlacesDetailsResponse detail =
             await _places.getDetailsByPlaceId(p.placeId);
-        final address = detail.result.formattedAddress;
+        final String address = detail.result.formattedAddress;
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -155,6 +158,15 @@ class SecondRoute extends StatelessWidget {
           child: ElevatedButton(
             onPressed: () {
               _handlePressButton();
+              // String address = 'San Francisco, CA, USA';
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //       builder: (context) => RestaurantDetailsPage(
+              //             title: 'Random Restaurant Picker',
+              //             location: address,
+              //           )),
+              // );
             },
             child: Text('Enter location'),
           ),
