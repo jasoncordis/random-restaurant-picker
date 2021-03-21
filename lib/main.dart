@@ -14,7 +14,7 @@ void main() async {
   await initHiveForFlutter();
 
   final HttpLink httpLink = HttpLink(
-    'https://api.yelp.com/v3/graphql',
+    'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/graphql',
   );
 
   final AuthLink authLink = AuthLink(
