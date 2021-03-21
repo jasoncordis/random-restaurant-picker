@@ -5,6 +5,8 @@ import 'package:flutter_google_places/flutter_google_places.dart';
 import 'package:random_restaurant_picker/pages/restaurant_details.dart';
 // import 'package:random_restaurant_picker/secrets/api_keys.dart';
 // import 'package:flutter_dotenv/flutter_dotenv.dart' as DotEnv;
+import 'package:http/http.dart' as http;
+import 'dart:convert' as convert;
 
 void main() async {
   // Load API keys from env file if available.
@@ -14,7 +16,7 @@ void main() async {
   await initHiveForFlutter();
 
   final HttpLink httpLink = HttpLink(
-    'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/graphql',
+    'https://api.yelp.com/v3/graphql',
   );
 
   final AuthLink authLink = AuthLink(
@@ -48,9 +50,8 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: RestaurantDetailsPage(
+        home: MyHomePage(
           title: 'Random Restaurant Picker',
-          location: 'San Francisco, CA, USA',
         ),
       ),
     );
@@ -110,7 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
 class SecondRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Future<String> displayPrediction(Prediction p) async {
+    Future<Null> displayPrediction(Prediction p) async {
       if (p != null) {
         // get detail (lat/lng)
         GoogleMapsPlaces _places = GoogleMapsPlaces(
@@ -120,12 +121,26 @@ class SecondRoute extends StatelessWidget {
             await _places.getDetailsByPlaceId(p.placeId);
         final address = detail.result.formattedAddress;
         print(address);
-        return address;
+        var url = Uri.parse(
+            'https://us-central1-packhacks-random-restaurant.cloudfunctions.net/get-yelp-random-business');
+        http.Response response = await http.post(url, body: {
+          'location': address,
+        });
+        var searchResults =
+            convert.jsonDecode(response.body)['data']['search']['business'][0];
+        print(searchResults);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => RestaurantDetailsPage(
+                    title: 'Random Restaurant Picker',
+                    searchResults: searchResults,
+                  )),
+        );
       }
-      return '';
     }
 
-    Future<String> _handlePressButton() async {
+    Future<void> _handlePressButton() async {
       /*
       const api = String.fromEnvironment('GOOGLE_API_KEY');
       */
@@ -135,7 +150,7 @@ class SecondRoute extends StatelessWidget {
           mode: Mode.fullscreen, // Mode.overlay
           language: "en",
           components: [Component(Component.country, "us")]);
-      return displayPrediction(prediction);
+      displayPrediction(prediction);
     }
 
     return Scaffold(
@@ -150,16 +165,7 @@ class SecondRoute extends StatelessWidget {
         child: Center(
           child: ElevatedButton(
             onPressed: () {
-              // String address = await _handlePressButton();
-              String address = 'San Francisco, CA, USA';
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => RestaurantDetailsPage(
-                          title: 'Random Restaurant Picker',
-                          location: address,
-                        )),
-              );
+              _handlePressButton();
             },
             child: Text('Enter location'),
           ),
