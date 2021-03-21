@@ -108,6 +108,19 @@ class _MyHomePageState extends State<MyHomePage> {
 class SecondRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
+    Future<Null> displayPrediction(Prediction p) async {
+      if (p != null) {
+        // get detail (lat/lng)
+        GoogleMapsPlaces _places = GoogleMapsPlaces(
+          apiKey: 'AIzaSyDaLoVRBiGxUUWg0uliTV_uELvFaDXVueQ',
+        );
+        PlacesDetailsResponse detail = await _places.getDetailsByPlaceId(p.placeId);
+        final address = detail.result.formattedAddress;
+        print(address);
+      }
+  }
+
     Future<void> _handlePressButton() async {
       /*
       const api = String.fromEnvironment('GOOGLE_API_KEY');
@@ -118,6 +131,7 @@ class SecondRoute extends StatelessWidget {
         mode: Mode.fullscreen, // Mode.overlay
         language: "en",
         components: [Component(Component.country, "us")]);
+        displayPrediction(prediction);
     }
 
     return Scaffold(
