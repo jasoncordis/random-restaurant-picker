@@ -118,6 +118,7 @@ class SecondRoute extends StatelessWidget {
         PlacesDetailsResponse detail =
             await _places.getDetailsByPlaceId(p.placeId);
         final address = detail.result.formattedAddress;
+        print(address);
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -139,7 +140,7 @@ class SecondRoute extends StatelessWidget {
           mode: Mode.fullscreen, // Mode.overlay
           language: "en",
           components: [Component(Component.country, "us")]);
-      displayPrediction(prediction);
+          displayPrediction(prediction);
     }
 
     return Scaffold(
