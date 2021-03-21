@@ -53,7 +53,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: MyHomePage(title: 'Random Restaurant Picker'),
+        home: RestaurantDetailsPage(title: 'Random Restaurant Picker'),
       ),
     );
   }
