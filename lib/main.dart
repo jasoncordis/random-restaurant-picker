@@ -85,7 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
             children: <Widget>[
               Text(
                 'Welcome to Random Restaurant Picker',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 60),
               ),
               ElevatedButton(
                 child: Text('Continue'),
