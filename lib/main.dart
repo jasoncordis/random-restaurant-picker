@@ -125,7 +125,7 @@ class SecondRoute extends StatelessWidget {
             'https://us-central1-packhacks-random-restaurant.cloudfunctions.net/get-yelp-random-business');
         http.Response response = await http.post(
           url,
-          body: "{\n  \"location\": \"San Francisco, CA, USA\"\n}",
+          body: '{\n  \"location\": \"' + address + '\"\n}',
           headers: {'content-type': 'application/json'},
         );
         var searchResults =

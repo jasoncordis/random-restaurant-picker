@@ -15,4 +15,5 @@ void main() async {
   var searchResults =
       convert.jsonDecode(response.body)['data']['search']['business'][0];
   print(searchResults);
+  // print('{\n  \"location\": \"' + address + '\"\n}');
 }
