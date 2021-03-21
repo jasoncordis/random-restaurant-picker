@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-// import 'package:google_maps_webservice/places.dart';
-// import 'package:flutter_google_places/flutter_google_places.dart';
+import 'package:google_maps_webservice/places.dart';
+import 'package:flutter_google_places/flutter_google_places.dart';
 import 'package:random_restaurant_picker/pages/restaurant_details.dart';
 // import 'package:random_restaurant_picker/secrets/api_keys.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart' as DotEnv;
 
 void main() async {
   // Load API keys from env file if available.
-  await DotEnv.load(fileName: ".env");
+  //await DotEnv.load(fileName: "apikey.env");
   // We're using HiveStore for persistence,
   // so we need to initialize Hive.
   await initHiveForFlutter();
@@ -20,7 +20,7 @@ void main() async {
   final AuthLink authLink = AuthLink(
     getToken: () async =>
         'Bearer ' +
-        String.fromEnvironment('YELP_API_KEY',
+        String.fromEnvironment('RU8br-ZfI6fTPcol68ahMsStdnsyl2CDcHneoscds5N9wS1bq0CVX0hff0IrgL9cZaIGpwjCK5wNSTqo5pLVj1DdUm5_jCkPx3NqXysqCQjEC2J6kvr8pjWOGfBUYHYx',
             defaultValue: DotEnv.env['YELP_API_KEY']),
     // OR
     // getToken: () => 'Bearer <YOUR_PERSONAL_ACCESS_TOKEN>',
@@ -109,15 +109,15 @@ class SecondRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Future<void> _handlePressButton() async {
-      // show input autocomplete with selected mode
-      // then get the Prediction selected
-      // Prediction prediction = await PlacesAutocomplete.show(
-      //     context: context,
-      //     apiKey: String.fromEnvironment('GOOGLE_API_KEY', defaultValue: DotEnv.env['GOOGLE_API_KEY']),
-      //     mode: Mode.fullscreen, // Mode.overlay
-      //     language: "en",
-      //     components: [Component(Component.country, "us")]);
-      print('something');
+      /*
+      const api = String.fromEnvironment('GOOGLE_API_KEY');
+      */
+    Prediction prediction = await PlacesAutocomplete.show(
+        context: context,
+        apiKey: 'AIzaSyDaLoVRBiGxUUWg0uliTV_uELvFaDXVueQ',
+        mode: Mode.fullscreen, // Mode.overlay
+        language: "en",
+        components: [Component(Component.country, "us")]);
     }
 
     return Scaffold(
@@ -129,23 +129,12 @@ class SecondRoute extends StatelessWidget {
           image: DecorationImage(
               image: AssetImage("images/background.jpg"), fit: BoxFit.cover),
         ),
-        child: Center(
-          child: TextFormField(
-            decoration: new InputDecoration(
-              labelText: "Enter Location",
-              fillColor: Colors.white,
-              border: new OutlineInputBorder(
-                borderRadius: new BorderRadius.circular(25.0),
-                borderSide: new BorderSide(),
-              ),
-              //fillColor: Colors.green
-            ),
-            validator: (value) {
-              if (value.isEmpty) {
-                return 'Please enter some text';
-              }
-              return null;
-            },
+          child: Center(
+            child: ElevatedButton(
+                      onPressed: () {
+                        _handlePressButton();
+                      },
+          child: Text('Enter location'),
           ),
         ),
       ),
