@@ -8,7 +8,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart' as DotEnv;
 
 void main() async {
   // Load API keys from env file if available.
-  // await DotEnv.load(fileName: ".env");
+  await DotEnv.load(fileName: "assets/apikey.env");
   // We're using HiveStore for persistence,
   // so we need to initialize Hive.
   await initHiveForFlutter();
