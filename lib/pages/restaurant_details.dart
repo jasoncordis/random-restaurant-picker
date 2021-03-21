@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:random_restaurant_picker/api/yelp.dart';
 import 'dart:math';
+import 'package:url_launcher/url_launcher.dart';
 
 class RestaurantDetailsPage extends StatefulWidget {
   RestaurantDetailsPage({Key key, this.title, this.searchResults})
@@ -65,11 +65,16 @@ class _RestaurantDetailsPageState extends State<RestaurantDetailsPage> {
                     Center(
                       child: Container(
                         padding: EdgeInsets.only(top: 20),
-                        child: Text(
-                          searchResults['name'],
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: max(screenWidth * 0.05, 36),
+                        child: GestureDetector(
+                          onTap: () {
+                            _launchURL(searchResults['url']);
+                          },
+                          child: Text(
+                            searchResults['name'],
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: max(screenWidth * 0.05, 36),
+                            ),
                           ),
                         ),
                       ),
@@ -184,3 +189,6 @@ class _RestaurantDetailsPageState extends State<RestaurantDetailsPage> {
     );
   }
 }
+
+void _launchURL(String _url) async =>
+    await canLaunch(_url) ? await launch(_url) : throw 'Could not launch $_url';
