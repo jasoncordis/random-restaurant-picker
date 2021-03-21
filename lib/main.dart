@@ -20,7 +20,8 @@ void main() async {
   final AuthLink authLink = AuthLink(
     getToken: () async =>
         'Bearer ' +
-        String.fromEnvironment('RU8br-ZfI6fTPcol68ahMsStdnsyl2CDcHneoscds5N9wS1bq0CVX0hff0IrgL9cZaIGpwjCK5wNSTqo5pLVj1DdUm5_jCkPx3NqXysqCQjEC2J6kvr8pjWOGfBUYHYx',
+        String.fromEnvironment(
+            'RU8br-ZfI6fTPcol68ahMsStdnsyl2CDcHneoscds5N9wS1bq0CVX0hff0IrgL9cZaIGpwjCK5wNSTqo5pLVj1DdUm5_jCkPx3NqXysqCQjEC2J6kvr8pjWOGfBUYHYx',
             defaultValue: DotEnv.env['YELP_API_KEY']),
     // OR
     // getToken: () => 'Bearer <YOUR_PERSONAL_ACCESS_TOKEN>',
@@ -53,7 +54,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: RestaurantDetailsPage(title: 'Random Restaurant Picker'),
+        home: MyHomePage(title: 'Random Restaurant Picker'),
       ),
     );
   }
@@ -112,12 +113,12 @@ class SecondRoute extends StatelessWidget {
       /*
       const api = String.fromEnvironment('GOOGLE_API_KEY');
       */
-    Prediction prediction = await PlacesAutocomplete.show(
-        context: context,
-        apiKey: 'AIzaSyDaLoVRBiGxUUWg0uliTV_uELvFaDXVueQ',
-        mode: Mode.fullscreen, // Mode.overlay
-        language: "en",
-        components: [Component(Component.country, "us")]);
+      Prediction prediction = await PlacesAutocomplete.show(
+          context: context,
+          apiKey: 'AIzaSyDaLoVRBiGxUUWg0uliTV_uELvFaDXVueQ',
+          mode: Mode.fullscreen, // Mode.overlay
+          language: "en",
+          components: [Component(Component.country, "us")]);
     }
 
     return Scaffold(
@@ -129,12 +130,12 @@ class SecondRoute extends StatelessWidget {
           image: DecorationImage(
               image: AssetImage("images/background.jpg"), fit: BoxFit.cover),
         ),
-          child: Center(
-            child: ElevatedButton(
-                      onPressed: () {
-                        _handlePressButton();
-                      },
-          child: Text('Enter location'),
+        child: Center(
+          child: ElevatedButton(
+            onPressed: () {
+              _handlePressButton();
+            },
+            child: Text('Enter location'),
           ),
         ),
       ),
