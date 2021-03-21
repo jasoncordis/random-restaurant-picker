@@ -8,7 +8,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart' as DotEnv;
 
 void main() async {
   // Load API keys from env file if available.
-  await DotEnv.load(fileName: "apikey.env");
+  //await DotEnv.load(fileName: "apikey.env");
   // We're using HiveStore for persistence,
   // so we need to initialize Hive.
   await initHiveForFlutter();
@@ -20,7 +20,7 @@ void main() async {
   final AuthLink authLink = AuthLink(
     getToken: () async =>
         'Bearer ' +
-        String.fromEnvironment('YELP_API_KEY',
+        String.fromEnvironment('RU8br-ZfI6fTPcol68ahMsStdnsyl2CDcHneoscds5N9wS1bq0CVX0hff0IrgL9cZaIGpwjCK5wNSTqo5pLVj1DdUm5_jCkPx3NqXysqCQjEC2J6kvr8pjWOGfBUYHYx',
             defaultValue: DotEnv.env['YELP_API_KEY']),
     // OR
     // getToken: () => 'Bearer <YOUR_PERSONAL_ACCESS_TOKEN>',
@@ -109,10 +109,12 @@ class SecondRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Future<void> _handlePressButton() async {
+      /*
       const api = String.fromEnvironment('GOOGLE_API_KEY');
+      */
     Prediction prediction = await PlacesAutocomplete.show(
         context: context,
-        apiKey: api,
+        apiKey: 'AIzaSyDaLoVRBiGxUUWg0uliTV_uELvFaDXVueQ',
         mode: Mode.fullscreen, // Mode.overlay
         language: "en",
         components: [Component(Component.country, "us")]);
