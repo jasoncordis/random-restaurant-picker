@@ -53,10 +53,12 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Center(
-                child: Text(
-                  'Welcome to Random Restaurant Picker',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 60),
+              Container(
+                child: Center(
+                  child: Text(
+                    'Welcome to Random Restaurant Picker',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 60),
+                  ),
                 ),
               ),
               ElevatedButton(
