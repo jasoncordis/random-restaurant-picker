@@ -4,16 +4,16 @@ import 'package:random_restaurant_picker/api/yelp.dart';
 import 'dart:math';
 
 class RestaurantDetailsPage extends StatefulWidget {
-  RestaurantDetailsPage({Key key, this.title}) : super(key: key);
+  RestaurantDetailsPage({Key key, this.title, this.location}) : super(key: key);
 
   final String title;
+  final String location;
 
   @override
   _RestaurantDetailsPageState createState() => _RestaurantDetailsPageState();
 }
 
 class _RestaurantDetailsPageState extends State<RestaurantDetailsPage> {
-  String _location = 'san francisco';
   var rng = new Random();
 
   @override
@@ -26,7 +26,7 @@ class _RestaurantDetailsPageState extends State<RestaurantDetailsPage> {
         options: QueryOptions(
           document: gql(searchRestaurants),
           variables: {
-            'location': _location,
+            'location': widget.location,
             'offset': rng.nextInt(500),
           },
         ),
