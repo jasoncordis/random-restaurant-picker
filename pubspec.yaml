@@ -23,7 +23,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  graphql: ^4.0.1
   url_launcher: ^6.0.2
   flutter_google_places:
     git:

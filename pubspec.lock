@@ -43,13 +43,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.15.0"
-  crypto:
-    dependency: transitive
-    description:
-      name: crypto
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.0.0"
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -111,69 +104,6 @@ packages:
       url: "https://github.com/Flutter-Dart-Open-Source/google_maps_webservice.git"
     source: git
     version: "0.0.20"
-  gql:
-    dependency: transitive
-    description:
-      name: gql
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.13.0-nullsafety.2"
-  gql_dedupe_link:
-    dependency: transitive
-    description:
-      name: gql_dedupe_link
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.0-nullsafety.1"
-  gql_error_link:
-    dependency: transitive
-    description:
-      name: gql_error_link
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.2.0-nullsafety.1"
-  gql_exec:
-    dependency: transitive
-    description:
-      name: gql_exec
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.3.0-nullsafety.2"
-  gql_http_link:
-    dependency: transitive
-    description:
-      name: gql_http_link
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.4.0-nullsafety.1"
-  gql_link:
-    dependency: transitive
-    description:
-      name: gql_link
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.4.0-nullsafety.2"
-  gql_transform_link:
-    dependency: transitive
-    description:
-      name: gql_transform_link
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.2.0-nullsafety.1"
-  graphql:
-    dependency: "direct main"
-    description:
-      name: graphql
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "4.1.0-beta.2"
-  hive:
-    dependency: transitive
-    description:
-      name: hive
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.6.0-nullsafety.2"
   http:
     dependency: transitive
     description:
@@ -216,13 +146,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.3.0"
-  normalize:
-    dependency: transitive
-    description:
-      name: normalize
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.5.0-nullsafety.0"
   package_info:
     dependency: transitive
     description:
@@ -354,13 +277,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
-  uuid:
-    dependency: transitive
-    description:
-      name: uuid
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.0.1"
   vector_math:
     dependency: transitive
     description:
@@ -368,13 +284,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
-  web_socket_channel:
-    dependency: transitive
-    description:
-      name: web_socket_channel
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.0"
 sdks:
   dart: ">=2.12.0 <3.0.0"
   flutter: ">=1.22.0"
