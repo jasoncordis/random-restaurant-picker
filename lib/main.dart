@@ -62,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               ElevatedButton(
-                child: Text('Continue'),
+                child: Text('Continue', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30)),
                 onPressed: () {
                   // Navigator.push(
                   //   context,
@@ -138,11 +138,15 @@ class SecondRoute extends StatelessWidget {
               image: AssetImage("images/background.jpg"), fit: BoxFit.cover),
         ),
         child: Center(
-          child: ElevatedButton(
-            onPressed: () {
-              _handlePressButton();
-            },
-            child: Text('Enter location'),
+          child: ButtonTheme(
+            minWidth: 200.0,
+            height: 100.0,
+            child: ElevatedButton(
+              onPressed: () {
+                _handlePressButton();
+              },
+              child: Text('Enter location', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30))
+            ),
           ),
         ),
       ),
