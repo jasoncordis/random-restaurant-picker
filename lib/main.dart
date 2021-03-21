@@ -120,7 +120,8 @@ class SecondRoute extends StatelessWidget {
         );
         PlacesDetailsResponse detail =
             await _places.getDetailsByPlaceId(p.placeId);
-        final String address = detail.result.formattedAddress;
+        final address = detail.result.formattedAddress;
+        print(address);
         Navigator.push(
           context,
           MaterialPageRoute(
