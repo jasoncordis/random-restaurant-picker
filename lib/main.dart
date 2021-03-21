@@ -109,30 +109,37 @@ class _MyHomePageState extends State<MyHomePage> {
 class SecondRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
     Future<Null> displayPrediction(Prediction p) async {
       if (p != null) {
         // get detail (lat/lng)
         GoogleMapsPlaces _places = GoogleMapsPlaces(
           apiKey: 'AIzaSyDaLoVRBiGxUUWg0uliTV_uELvFaDXVueQ',
         );
-        PlacesDetailsResponse detail = await _places.getDetailsByPlaceId(p.placeId);
+        PlacesDetailsResponse detail =
+            await _places.getDetailsByPlaceId(p.placeId);
         final address = detail.result.formattedAddress;
-        print(address);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => RestaurantDetailsPage(
+                    title: 'Random Restaurant Picker',
+                    location: address,
+                  )),
+        );
       }
-  }
+    }
 
     Future<void> _handlePressButton() async {
       /*
       const api = String.fromEnvironment('GOOGLE_API_KEY');
       */
-    Prediction prediction = await PlacesAutocomplete.show(
-        context: context,
-        apiKey: 'AIzaSyDaLoVRBiGxUUWg0uliTV_uELvFaDXVueQ',
-        mode: Mode.fullscreen, // Mode.overlay
-        language: "en",
-        components: [Component(Component.country, "us")]);
-        displayPrediction(prediction);
+      Prediction prediction = await PlacesAutocomplete.show(
+          context: context,
+          apiKey: 'AIzaSyDaLoVRBiGxUUWg0uliTV_uELvFaDXVueQ',
+          mode: Mode.fullscreen, // Mode.overlay
+          language: "en",
+          components: [Component(Component.country, "us")]);
+      displayPrediction(prediction);
     }
 
     return Scaffold(
