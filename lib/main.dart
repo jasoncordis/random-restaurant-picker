@@ -1,58 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:google_maps_webservice/places.dart';
 import 'package:flutter_google_places/flutter_google_places.dart';
 import 'package:random_restaurant_picker/pages/restaurant_details.dart';
-// import 'package:random_restaurant_picker/secrets/api_keys.dart';
-// import 'package:flutter_dotenv/flutter_dotenv.dart' as DotEnv;
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 
 void main() async {
-  // Load API keys from env file if available.
-  // await DotEnv.load(fileName: "assets/apikey.env");
-  // We're using HiveStore for persistence,
-  // so we need to initialize Hive.
-  await initHiveForFlutter();
-
-  final HttpLink httpLink = HttpLink(
-    'https://api.yelp.com/v3/graphql',
-  );
-
-  final AuthLink authLink = AuthLink(
-      getToken: () async =>
-          'Bearer RU8br-ZfI6fTPcol68ahMsStdnsyl2CDcHneoscds5N9wS1bq0CVX0hff0IrgL9cZaIGpwjCK5wNSTqo5pLVj1DdUm5_jCkPx3NqXysqCQjEC2J6kvr8pjWOGfBUYHYx');
-
-  final Link link = authLink.concat(httpLink);
-
-  ValueNotifier<GraphQLClient> client = ValueNotifier(
-    GraphQLClient(
-      link: link,
-      // The default store is the InMemoryStore, which does NOT persist to disk
-      cache: GraphQLCache(store: HiveStore()),
-    ),
-  );
-
-  runApp(MyApp(client: client));
+  runApp(MyApp(title: 'Random Restaurant Picker'));
 }
 
 class MyApp extends StatelessWidget {
-  final ValueNotifier<GraphQLClient> client;
+  final String title;
 
-  MyApp({this.client});
+  MyApp({this.title});
 
   @override
   Widget build(BuildContext context) {
-    return GraphQLProvider(
-      client: client,
-      child: MaterialApp(
-        title: 'Random Restaurant Picker',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: MyHomePage(
-          title: 'Random Restaurant Picker',
-        ),
+    return MaterialApp(
+      title: title,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: MyHomePage(
+        title: title,
       ),
     );
   }
@@ -83,9 +53,11 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(
-                'Welcome to Random Restaurant Picker',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 60),
+              Center(
+                child: Text(
+                  'Welcome to Random Restaurant Picker',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 60),
+                ),
               ),
               ElevatedButton(
                 child: Text('Continue', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30)),
