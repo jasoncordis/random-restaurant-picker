@@ -20,7 +20,8 @@ void main() async {
   final AuthLink authLink = AuthLink(
     getToken: () async =>
         'Bearer ' +
-        String.fromEnvironment('RU8br-ZfI6fTPcol68ahMsStdnsyl2CDcHneoscds5N9wS1bq0CVX0hff0IrgL9cZaIGpwjCK5wNSTqo5pLVj1DdUm5_jCkPx3NqXysqCQjEC2J6kvr8pjWOGfBUYHYx',
+        String.fromEnvironment(
+            'RU8br-ZfI6fTPcol68ahMsStdnsyl2CDcHneoscds5N9wS1bq0CVX0hff0IrgL9cZaIGpwjCK5wNSTqo5pLVj1DdUm5_jCkPx3NqXysqCQjEC2J6kvr8pjWOGfBUYHYx',
             defaultValue: DotEnv.env['YELP_API_KEY']),
     // OR
     // getToken: () => 'Bearer <YOUR_PERSONAL_ACCESS_TOKEN>',
@@ -143,12 +144,12 @@ class SecondRoute extends StatelessWidget {
           image: DecorationImage(
               image: AssetImage("images/background.jpg"), fit: BoxFit.cover),
         ),
-          child: Center(
-            child: ElevatedButton(
-                      onPressed: () {
-                        _handlePressButton();
-                      },
-          child: Text('Enter location'),
+        child: Center(
+          child: ElevatedButton(
+            onPressed: () {
+              _handlePressButton();
+            },
+            child: Text('Enter location'),
           ),
         ),
       ),
