@@ -112,7 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
 class SecondRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Future<Null> displayPrediction(Prediction p) async {
+    Future<String> displayPrediction(Prediction p) async {
       if (p != null) {
         // get detail (lat/lng)
         GoogleMapsPlaces _places = GoogleMapsPlaces(
@@ -122,18 +122,12 @@ class SecondRoute extends StatelessWidget {
             await _places.getDetailsByPlaceId(p.placeId);
         final address = detail.result.formattedAddress;
         print(address);
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => RestaurantDetailsPage(
-                    title: 'Random Restaurant Picker',
-                    location: address,
-                  )),
-        );
+        return address;
       }
+      return '';
     }
 
-    Future<void> _handlePressButton() async {
+    Future<String> _handlePressButton() async {
       /*
       const api = String.fromEnvironment('GOOGLE_API_KEY');
       */
@@ -143,7 +137,7 @@ class SecondRoute extends StatelessWidget {
           mode: Mode.fullscreen, // Mode.overlay
           language: "en",
           components: [Component(Component.country, "us")]);
-      displayPrediction(prediction);
+      return displayPrediction(prediction);
     }
 
     return Scaffold(
@@ -157,17 +151,17 @@ class SecondRoute extends StatelessWidget {
         ),
         child: Center(
           child: ElevatedButton(
-            onPressed: () {
-              _handlePressButton();
+            onPressed: () async {
+              String address = await _handlePressButton();
               // String address = 'San Francisco, CA, USA';
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //       builder: (context) => RestaurantDetailsPage(
-              //             title: 'Random Restaurant Picker',
-              //             location: address,
-              //           )),
-              // );
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => RestaurantDetailsPage(
+                          title: 'Random Restaurant Picker',
+                          location: address,
+                        )),
+              );
             },
             child: Text('Enter location'),
           ),
